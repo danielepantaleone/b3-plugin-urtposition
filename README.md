@@ -8,10 +8,10 @@ used as subplugin since it doesn't provide commands or visual reaction to B3 eve
 
 For plugin developers
 ---------------------
-This plugin fires 2 new events:
+This plugin fires 2 new events (fired at most every `position_update_interval` seconds):
 
-* `EVT_CLIENT_MOVE` : when the player moves across the map (fired at most every `position_update_interval` seconds)
-* `EVT_CLIENT_STANDING` : when the player is standing on the same location (fired at most every `position_update_interval` seconds)
+* `EVT_CLIENT_MOVE` : when the player moves across the map
+* `EVT_CLIENT_STANDING` : when the player is standing on the same location
 
 When a new position is being retrieved the plugin a new attribute to the `b3.clients.Client` object: `position`. This 
 attribute will hold the position coordinates:
@@ -30,8 +30,6 @@ This plugin is meant to work only with B3 version **1.10dev** or higher. No **1.
 the plugin makes use of some new B3 core features which have been added in version 1.10 development branch. Also, the
 plugin needs a modified UrT 4.2 server engine to work: you can ask more information on the B3 forums.
 
-Installation
-------------
 Installation
 ------------
 Drop the `urtposition` directory into `b3/extplugins`.  
