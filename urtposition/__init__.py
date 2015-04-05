@@ -65,7 +65,7 @@ class UrtpositionPlugin(b3.plugin.Plugin):
             self.warning("missing or bad value for settings/position_update_interval: %s", e)
         else:
             if not 5 <= self.position_update_interval <= 60:
-                self.warning("settings/position_update_interval must be in range 10-60: setting default value")
+                self.warning("settings/position_update_interval must be in range 5-60: setting default value")
                 self.position_update_interval = 10
         self.info('settings/position_update_interval: %s sec' % self.position_update_interval)
 
