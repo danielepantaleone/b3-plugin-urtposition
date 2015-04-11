@@ -49,6 +49,10 @@ Changelog
 ### 1.0 - 2015/04/04 - Fenix
 - initial release
 
+### 1.1 - 2015/04/11 - Fenix
+- fixed mixed missing configuration file header
+- correctly discard empty lines in 'position all' command response
+
 Support
 -------
 If you have found a bug or have a suggestion for this plugin, please report it on the [B3 forums][Support].
