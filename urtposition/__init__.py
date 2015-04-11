@@ -20,6 +20,7 @@
 #
 # 2015/04/04 - 1.0 - Fenix - initial version
 # 2015/04/11 - 1.1 - Fenix - fixed mixed missing configuration file header
+#                          - correctly discard empty lines in 'position all' command response
 
 __author__ = 'Fenix'
 __version__ = '1.1'
@@ -92,7 +93,7 @@ class UrtpositionPlugin(b3.plugin.Plugin):
         self.console.createEvent('EVT_CLIENT_STANDING', 'Event client standing')
 
         # setup automatic position refresh
-        self.position_update_crontab = PluginCronTab(self, self._update, 0, '*/%s' % self.position_update_interval)
+        self.position_update_crontab = PluginCronTab(self, self._update, '*/%s' % self.position_update_interval)
         self.console.cron + self.position_update_crontab
 
     ####################################################################################################################
@@ -150,7 +151,7 @@ class UrtpositionPlugin(b3.plugin.Plugin):
             position_new = ORIGIN
             if client.team != TEAM_SPEC:
                 rv = self.console.write('position %s' % client.cid)
-                match = self.position_re.match(rv)
+                match = self.position_re.match(rv.strip())
                 if not match:
                     self.warning('could not parse client <%s> position: line did not match format: %s' % (client.cid, rv))
                 else:
@@ -181,9 +182,9 @@ class UrtpositionPlugin(b3.plugin.Plugin):
         Scheduled execution
         """
         if self.console.time() > self.position_update_ignore_till:
-            self.debug('refreshing clients positions...')
-            rv = self.console.write('position all')
-            for line in rv.split('\n'):
+            self.verbose('refreshing clients positions...')
+            positions = [x.strip() for x in self.console.write('position all').split('\n') if x.strip()]
+            for line in positions:
                 m = self.position_re.match(line)
                 if not m:
                     self.warning('could not parse client position: line did not match format: %s' % line)
