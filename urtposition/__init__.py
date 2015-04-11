@@ -19,9 +19,10 @@
 # CHANGELOG
 #
 # 2015/04/04 - 1.0 - Fenix - initial version
+# 2015/04/11 - 1.1 - Fenix - fixed mixed missing configuration file header
 
 __author__ = 'Fenix'
-__version__ = '1.0'
+__version__ = '1.1'
 
 import b3
 import b3.clients
