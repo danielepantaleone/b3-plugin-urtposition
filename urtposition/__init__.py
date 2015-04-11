@@ -161,6 +161,7 @@ class UrtpositionPlugin(b3.plugin.Plugin):
 
         # store always the value in the client
         client.position = position_new
+        self.verbose('updated client %s position: %s' % (client.cid, client.position))
 
         if position_old != position_new:
             if position_old != ORIGIN and position_new != ORIGIN:
