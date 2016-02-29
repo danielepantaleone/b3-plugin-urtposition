@@ -41,7 +41,7 @@ Load the plugin in your `b3.ini` or `b3.xml` configuration file:
 ```
 ```ini
 [plugins]
-location: @b3/extplugins/urtposition/conf/plugin_urtposition.ini
+urtposition: @b3/extplugins/urtposition/conf/plugin_urtposition.ini
 ```
 
 Changelog
